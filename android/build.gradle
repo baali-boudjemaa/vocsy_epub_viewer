@@ -16,14 +16,20 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
-        maven { url "https://jitpack.io" }
+        maven { url "https://jitpack.io"
+            allowInsecureProtocol = true
+        }
+        maven {
+                url 'http://download.flutter.io'
+            allowInsecureProtocol = true
+        }
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 21
@@ -32,13 +38,16 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    buildToolsVersion '34.0.0'
 }
 
 dependencies {
-    implementation 'com.github.kaushikgodhani:vocsy_epub_viewer_android_folioreader:V4'
+    implementation files('D:/flutter/bin/cache/artifacts/engine/android-arm64-release/flutter.jar')
+    implementation 'com.github.baali-boudjemaa:vocsy_epub_viewer_android_folioreader:V4'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.8'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.annotation:annotation-jvm:1.8.0'
 }
 
 
